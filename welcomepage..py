@@ -4,8 +4,11 @@ from tkinter import messagebox, simpledialog
 
 class BankApp:
     def __init__(self):
+        self.password_entry = None
+        self.username_entry = None
         self.login_window = tk.Tk()
         self.login_window.title('JABS BANK')
+        self.login_window.geometry("300x500")
         self.create_login_window()
 
     def create_login_window(self):
@@ -29,7 +32,7 @@ class BankApp:
         username = self.username_entry.get()
         password = self.password_entry.get()
 
-        if username == 'admin' and password == '1234':
+        if username == 'Admin' and password == '1234':
             self.login_window.withdraw()
             self.show_account_selection()
         else:
@@ -61,7 +64,7 @@ class BankApp:
             if amount <= 5000:
                 messagebox.showinfo('Deposit Successful', 'Deposit of {} accepted.'.format(amount))
             else:
-                messagebox.showerror('Deposit Failed', 'You can only deposit (umlimited).')
+                messagebox.showerror('Deposit Failed', 'You can only deposit an amount on or below 5000.')
 
     def withdraw_savings(self):
         amount = self.show_dialog('Withdraw', 'Enter withdrawal amount:')
@@ -69,7 +72,7 @@ class BankApp:
             if amount <= 10000:
                 messagebox.showinfo('Withdrawal Successful', 'Withdrawal of {} accepted.'.format(amount))
             else:
-                messagebox.showerror('No Cash', 'Insufficent fund you can only withdraw 10000.')
+                messagebox.showerror('No Cash', 'Insufficient fund you can only withdraw 10000.')
 
     def show_current_account(self):
         current_window = tk.Toplevel()
@@ -92,12 +95,13 @@ class BankApp:
             if amount <= 10000:
                 messagebox.showinfo('Withdrawal Successful', 'Withdrawal of {} accepted.'.format(amount))
             else:
-                messagebox.showerror('Na men ', 'Insufficient funds. You can only withdraw (10000).')
+                messagebox.showerror('Sorry Blud ', 'Insufficient funds. You can only withdraw (10000).')
 
-    def show_dialog(self, title, prompt):
+    @staticmethod
+    def show_dialog(title, prompt):
         value = tk.simpledialog.askinteger(title, prompt)
         return value
 
 
-app =BankApp()
+app = BankApp()
 tk.mainloop()
